@@ -12,6 +12,7 @@ VALUES ('Lisa', 'Bonet'),
 ('Bob', 'Ross'),
 ('Johnny', 'Tables');
 
+
 CREATE TABLE pets (
 id SERIAL PRIMARY KEY,
 name varchar(80),
@@ -27,10 +28,9 @@ check_in varchar(80),
 check_out varchar(80),
 pets_id varchar(80));
 
-
 INSERT INTO pets(name, breed, color)
 VALUES ('brandy', 'lab', 'brown'),
 ('giggles', 'corgi', 'blue'),
 ('lucky', 'dalmatian', 'white'),
 ('spot', 'bulldog', 'gray'),
-('fluffy', 'poodle');
+('fluffy', 'poodle', 'snow white');
