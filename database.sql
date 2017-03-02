@@ -26,3 +26,11 @@ name varchar(80),
 check_in varchar(80),
 check_out varchar(80),
 pets_id varchar(80));
+
+
+INSERT INTO pets
+VALUES ('brandy', 'lab', 'brown'),
+('giggles', 'corgi', 'blue'),
+('lucky', 'dalmatian', 'white'),
+('spot', 'bulldog', 'gray'),
+('fluffy', 'poodle');
