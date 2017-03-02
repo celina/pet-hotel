@@ -7,6 +7,7 @@ console.log('client.js is sourced');
 
     //#newOwnerForm event listener
     $('#newOwnerForm').on('submit', function(event){
+      console.log('clicking new owner');
       event.preventDefault();
       var newOwnerObject = {};
       var formFields = $(this).serializeArray();
@@ -15,11 +16,11 @@ console.log('client.js is sourced');
       });
       $.ajax({
         type: 'POST',
-        url: '/pets/new',
+        url: '/pets/newOwners',
         data: newOwnerObject,
         success: function(response){
           console.log(response);
-          getPetData();
+          // getPetData();
           $('#newOwnerForm > input').val('');
         }
       });// end ajax POST
