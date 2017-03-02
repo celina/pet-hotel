@@ -4,13 +4,13 @@ CREATE TABLE owners (
     last_name character varying(80)
 );
 
-INSERT INTO owners
-VALUES (1, 'Lisa', 'Bonet'),
-(2, 'Charles', 'Darwin'),
-(3, 'George', 'Foreman'),
-(4, 'Lucy', 'Liu'),
-(5, 'Bob', 'Ross'),
-(6, 'Johnny', 'Tables');
+INSERT INTO owners(first_name, last_name)
+VALUES ('Lisa', 'Bonet'),
+('Charles', 'Darwin'),
+('George', 'Foreman'),
+('Lucy', 'Liu'),
+('Bob', 'Ross'),
+('Johnny', 'Tables');
 
 CREATE TABLE pets (
 id SERIAL PRIMARY KEY,
@@ -28,7 +28,7 @@ check_out varchar(80),
 pets_id varchar(80));
 
 
-INSERT INTO pets
+INSERT INTO pets(name, breed, color)
 VALUES ('brandy', 'lab', 'brown'),
 ('giggles', 'corgi', 'blue'),
 ('lucky', 'dalmatian', 'white'),
