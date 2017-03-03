@@ -13,12 +13,12 @@ console.log('client.js is sourced');
               var currentPet = response[i]; // Loops through pets - This is an object
               var $newPet = $('<tr>'); // Creating a new row for each pet
               $newPet.data('id', currentPet.id);
-              $newPet.append('<td>'+ "owners name"+ '</td>');
+              $newPet.append('<td>'+ currentPet.owner_id + '</td>');
               $newPet.append('<td>'+ currentPet.name + '</td>');
               $newPet.append('<td>' + currentPet.breed + '</td>');
               $newPet.append('<td>' + currentPet.color + '</td>');
-              $newPet.append('<td>' + $newPet.data.id + '<td><button class="deleteButton">Delete</button></td>');
-              $newPet.append('<td><button class="saveButton">Add Pet</button></td>');
+              $newPet.append('<button class="deleteButton">Delete</button></td>');
+              $newPet.append('<td><button class="saveButton">Update Pet</button></td>');
               $('#hotelTable').append($newPet);
             }
           }
