@@ -23,15 +23,20 @@
     <select id="ownerDrop">
       <option value="" disabled selected>Select an owner</option>
     </select>
+
+
+
     <label for="petName">Pet Name</label>
     <input type="text" name="petName" id="petName">
     <label for="color">Color</label>
     <input type="text" name="color" id="color">
     <label for="breed">Breed</label>
     <input type="text" name="breed" id="breed">
-    <button id="addPetButton">Add Pet</button>
-
+    <button type="submit" id="addPetButton">Add Pet</button>
+    <form id=newPetForm>
+    </form>
     <table id="hotelTable">
+
       <tr>
         <th>Owner</th>
         <th>Pet</th>
@@ -41,5 +46,12 @@
         <th>Delete</th>
         <th>Check In/Out</th>
       </tr>
+      <tbody>
+
+      </tbody>
+    </table>
+
+
+    </div>
   </body>
 </html>
