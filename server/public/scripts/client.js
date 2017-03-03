@@ -3,38 +3,38 @@ console.log('client.js is sourced');
 
       getPetData();
 
-      //#newOwnerForm event listener
-       $('#newOwnerForm').on('submit', function(event){
-         console.log('clicking new owner');
-         event.preventDefault();
-         var newOwnerObject = {};
-         var formFields = $(this).serializeArray();
-         formFields.forEach(function (field) {
-           newOwnerObject[field.name] = field.value;
-         });
-         $.ajax({
-           type: 'POST',
-           url: '/pets/newOwners',
-           data: newOwnerObject,
-           success: function(response){
-             console.log(response);
-             // getPetData();
-             $('#newOwnerForm > input').val('');
-           }
-         });// end ajax POST
-       });// end #newBookForm event listener
-
+      // #registerButton event listener
+      $('#registerButton').on('click', function(event){
+        console.log('clicking new owner');
+        event.preventDefault();
+        var newOwnerObject = {};
+        var formFields = $(this).serializeArray();
+        formFields.forEach(function (field) {
+          newOwnerObject[field.name] =field.value;
+        });
+          $.ajax({
+            type: 'POST',
+            url: '/pets/newOwners',
+            data: newOwnerObject,
+            success: function(response){
+              console.log(response);
+              // getPetData();
+              $('#newPetForm > input').val('');
+            }
+          });// end ajax POST
+          getOwnerData()
+      }); // end #registerButton event listener
 
       // #addPetButton event listener
-      // $('#addPetButton').on('click', function(event){
-      //   console.log('clicking new pet');
-      //   event.preventDefault();
-      //   var newOwnerObject = {};
-      //   var formFields = $(this).serializeArray();
-      //   formFields.forEach(function (field) {
-      //     newOwnerObject[field.name] =field.value;
-      //   });
-      // }); // end #addPetButton event listener
+      $('#addPetButton').on('click', function(event){
+        console.log('clicking new pet');
+        event.preventDefault();
+        var newOwnerObject = {};
+        var formFields = $(this).serializeArray();
+        formFields.forEach(function (field) {
+          newOwnerObject[field.name] =field.value;
+        });
+      }); // end #addPetButton event listener
 
     }); // end document.ready
 
@@ -114,3 +114,23 @@ console.log('client.js is sourced');
         }
       });  //closes ajax
     }; // end getPetData
+
+    // var newOption = $('<option value="'+val+'">'+val+'</option>');
+     // $('#pages').append(newOption);
+
+    function getOwnerData() {
+      $.ajax({
+        type: 'GET',
+        url: '/pets/newOwners',
+        success: function(response) {
+          console.log('ownerdataresponse', response); // response is an array of owner objects
+          $('#ownerDrop').empty(); // clears the pets in the #ownerDrop
+          for (var i = 0; i < response.length; i++) {
+            var currentOwner = response[i]; // Loops through owners - This is an object
+            var $newOption = $('<option value="' + currentOwner.first_name + ' ' + currentOwner.last_name + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>'); // Creating a new option for each owner
+            $newOption.data('id', currentOwner.id);
+            $('#ownerDrop').append($newOption);
+          }
+        }
+      });  //closes ajax
+    };
