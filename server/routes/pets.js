@@ -11,6 +11,51 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ////////////////
 router.post('/newOwners', function(req, res){
   // This will be replaced with an INSERT statement to SQL
@@ -37,8 +82,8 @@ router.post('/newOwners', function(req, res){
     }
   });
 });
-////////////////
 
+////////////////
 router.get('/', function(req, res){
   // This will be replaced with a SELECT statement to SQL
   pool.connect(function(errorConnectingToDatabase, client, done){
@@ -59,6 +104,40 @@ router.get('/', function(req, res){
     }
   });
 });
+
+/////////////
+
+
+
+// -> /delete
+router.delete('/delete/:id', function(req, res){
+  var petId = req.params.id;
+  // DELETE FROM books WHERE id=44;
+  console.log('pet of id to delete: ', petId);
+  // Connecting to, and deleting row from the database
+  pool.connect(function(errorConnectingToDatabase, client, done){
+    if(errorConnectingToDatabase) {
+      // There was an error connecting to the database
+      console.log('Error connecting to database: ', errorConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now, we're gonna' delete stuff!!!!!
+      client.query('DELETE FROM pets WHERE owner_id=$1;', // This is the SQL query
+      [petId], // This is the array of things that replaces the $1, $2, $3 in the query
+      function(errorMakingQuery, result){ // This is the function that runs after the query takes place
+        done();
+        if(errorMakingQuery) {
+          console.log('Error making the database query: ', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(202);
+        }
+      });
+    }
+  });
+}); // closing delete request
+
 
 
 module.exports = router;
