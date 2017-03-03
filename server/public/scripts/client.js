@@ -8,7 +8,9 @@ console.log('client.js is sourced');
           url: '/pets',
           success: function(response) {
             console.log('response', response); // response is an array of pet objects
-            $('#newPetForm').empty(); // clears the pets in the #hotelTable
+            // $('#newPetForm').empty(); // clears the pets in the #hotelTable
+            // ^^ celina: I think this was clearing and replacing the wrong element. I replaced it with tbody below:
+            $('#tbody').empty(); // clears the pets in the #hotelTable
             for (var i = 0; i < response.length; i++) {
               var currentPet = response[i]; // Loops through pets - This is an object
               var $newPet = $('<tr>'); // Creating a new row for each pet
@@ -17,7 +19,7 @@ console.log('client.js is sourced');
               $newPet.append('<td>'+ currentPet.name + '</td>');
               $newPet.append('<td>' + currentPet.breed + '</td>');
               $newPet.append('<td>' + currentPet.color + '</td>');
-              $newPet.append('<button class="deleteButton">Delete</button></td>');
+              $newPet.append('<td><button class="deleteButton">Delete</button></td>');
               $newPet.append('<td><button class="saveButton">Update Pet</button></td>');
               $('#hotelTable').append($newPet);
             }
