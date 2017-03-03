@@ -1,11 +1,7 @@
 console.log('client.js is sourced');
   $(document).ready(function(){ // start document.ready
-    console.log('jquery.js is sourced');
 
-
-    $(document).ready(function(){
-      console.log('jquery was correctly sourced!');
-      getPetData;
+      getPetData();
       function getPetData() {
         $.ajax({
           type: 'GET',
@@ -14,30 +10,24 @@ console.log('client.js is sourced');
             console.log('response', response); // response is an array of pet objects
             $('#newPetForm').empty(); // clears the pets in the #hotelTable
             for (var i = 0; i < response.length; i++) {
-              var currentpet = response[i]; // Loops through pets - This is an object
+              var currentPet = response[i]; // Loops through pets - This is an object
               var $newPet = $('<tr>'); // Creating a new row for each pet
               $newPet.data('id', currentPet.id);
-              $newPet.append('<td><input value="' + currentPet.name + '" class="petName"></td>');
-              $newPet.append('<td><input value="' + currentPet.breed + '" id="breed"></td>');
-              $newPet.append('<td><input value="' + currentPet.color + '" id="color"></td>');
-              // $newPet.append('<td><input value="' + $newPet.data + ('<td><button class="deleteButton">Delete</button></td>');
+              $newPet.append('<td>'+ "owners name"+ '</td>');
+              $newPet.append('<td>'+ currentPet.name + '</td>');
+              $newPet.append('<td>' + currentPet.breed + '</td>');
+              $newPet.append('<td>' + currentPet.color + '</td>');
+              $newPet.append('<td>' + $newPet.data.id + '<td><button class="deleteButton">Delete</button></td>');
               $newPet.append('<td><button class="saveButton">Add Pet</button></td>');
-              $('#hotelTable').prepend($newPet);
+              $('#hotelTable').append($newPet);
             }
           }
-        });
+        });  //closes ajax
 
 
 
-    }
-    //   $('#newPetForm').on('submit', function(event){
-    //     event.preventDefault();
-    //     var newPetObject = {};
-    //     var formFields = $(this).serializeArray();
-    //     formFields.forEach(function (field) {
-    //       newPetObject[field.name] = field.value;
-    //
-    //     });
+
+
     //
     //     $.ajax({
     //       type: 'POST',
@@ -48,9 +38,57 @@ console.log('client.js is sourced');
     //         getPetData();
     //         $('#newPetForm > input').val('');
     //       }
-    //     });
-  })
+        };
+  });
 
 
 
-  }); // end document.ready
+
+    //#newOwnerForm event listener
+    $('#newOwnerForm').on('submit', function(event){
+      console.log('clicking new owner');
+      event.preventDefault();
+      var newOwnerObject = {};
+      var formFields = $(this).serializeArray();
+      formFields.forEach(function (field) {
+        newOwnerObject[field.name] =field.value;
+      });
+
+    });// end #newBookForm event listener
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //#newOwnerForm event listener
+    // $('#newPetForm').on('submit', function(event){
+    //   console.log('clicking new pet');
+    //   event.preventDefault();
+    //   var newPetObject = {};
+    //   var formFields = $(this).serializeArray();
+    //   formFields.forEach(function (field) {
+    //     newPetObject[field.name] = field.value;
+    //   });
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: '/pets/newPets',
+    //     data: newPetObject,
+    //     success: function(response){
+    //       console.log(response);
+    //       // getPetData();
+    //       $('#newPetForm > input').val('');
+    //     }
+    //   });// end ajax POST
+    // });// end #newBookForm event listener
+
+
+
+ // end document.ready
