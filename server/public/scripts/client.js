@@ -32,11 +32,14 @@ console.log('client.js is sourced');
         $('#newPetForm').on('submit', function(event){
           console.log('clicking new pet');
           event.preventDefault();
+          console.log($('#ownerDrop').val());
           var newPetObject = {};
           var formFields = $(this).serializeArray();
           formFields.forEach(function (field) {
             newPetObject[field.name] = field.value;
           });
+          newPetObject.owner_id = $('#ownerDrop').val();
+          // console.log(newPetObject);
           $.ajax({
             type: 'POST',
             url: '/pets/newPets',
@@ -82,12 +85,13 @@ console.log('client.js is sourced');
           $('#ownerDrop').empty(); // clears the pets in the #ownerDrop
           for (var i = 0; i < response.length; i++) {
             var currentOwner = response[i]; // Loops through owners - This is an object
-            var $newOption = $('<option value="' + currentOwner.first_name + ' ' + currentOwner.last_name + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>'); // Creating a new option for each owner
+            // var $newOption = $('<option value="' + currentOwner.first_name + ' ' + currentOwner.last_name + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>'); // Creating a new option for each owner
+            var $newOption = $('<option value="' + currentOwner.id + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>'); // Creating a new option for each owner
             $newOption.data('id', currentOwner.id);
             $('#ownerDrop').append($newOption);
           }
         }
       });  //closes ajax
 
-      
+
     }; // end getOwnerData

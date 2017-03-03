@@ -72,8 +72,8 @@ router.post('/newPets', function(req, res){
     } else {
       // We connected to the database!!!
       // Now, we're gonna' git stuff!!!!!
-      client.query('INSERT INTO pets (name, breed, color) VALUES ($1, $2, $3);',
-      [addNewPet.petName, addNewPet.petBreed, addNewPet.petColor],
+      client.query('INSERT INTO pets (name, breed, color, owner_id) VALUES ($1, $2, $3, $4);',
+      [addNewPet.petName, addNewPet.petBreed, addNewPet.petColor, addNewPet.owner_id],
       function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
