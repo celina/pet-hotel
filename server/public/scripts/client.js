@@ -3,27 +3,38 @@ console.log('client.js is sourced');
 
       getPetData();
 
-      // #registerButton event listener
-      $('#registerButton').on('click', function(event){
-        console.log('clicking new owner');
-        event.preventDefault();
-        var newOwnerObject = {};
-        var formFields = $(this).serializeArray();
-        formFields.forEach(function (field) {
-          newOwnerObject[field.name] =field.value;
-        });
-      }); // end #registerButton event listener
+      //#newOwnerForm event listener
+       $('#newOwnerForm').on('submit', function(event){
+         console.log('clicking new owner');
+         event.preventDefault();
+         var newOwnerObject = {};
+         var formFields = $(this).serializeArray();
+         formFields.forEach(function (field) {
+           newOwnerObject[field.name] = field.value;
+         });
+         $.ajax({
+           type: 'POST',
+           url: '/pets/newOwners',
+           data: newOwnerObject,
+           success: function(response){
+             console.log(response);
+             // getPetData();
+             $('#newOwnerForm > input').val('');
+           }
+         });// end ajax POST
+       });// end #newBookForm event listener
+
 
       // #addPetButton event listener
-      $('#addPetButton').on('click', function(event){
-        console.log('clicking new pet');
-        event.preventDefault();
-        var newOwnerObject = {};
-        var formFields = $(this).serializeArray();
-        formFields.forEach(function (field) {
-          newOwnerObject[field.name] =field.value;
-        });
-      }); // end #addPetButton event listener
+      // $('#addPetButton').on('click', function(event){
+      //   console.log('clicking new pet');
+      //   event.preventDefault();
+      //   var newOwnerObject = {};
+      //   var formFields = $(this).serializeArray();
+      //   formFields.forEach(function (field) {
+      //     newOwnerObject[field.name] =field.value;
+      //   });
+      // }); // end #addPetButton event listener
 
     }); // end document.ready
 
