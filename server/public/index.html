@@ -51,31 +51,33 @@
     </container>
 
     <h2>Pets</h2>
-    <table>
-      <tr>
-        <td>
-          <label for="ownerDrop">Owner Name</label>
-          <select id="ownerDrop">
-            <option value="" disabled selected>Select an owner</option>
-          </select>
-        </td>
-        <td>
-          <label for="petName">Pet Name</label>
-          <input type="text" name="petName" id="petName">
-          <br>
-          <label for="petColor">Color</label>
-          <input type="text" name="petColor" id="petColor">
-        </td>
-        <td>
-          <label for="petBreed">Breed</label>
-          <input type="text" name="petBreed" id="petBreed">
-          <button id="addPetButton">Add Pet</button>
-        </td>
-      </tr>
-    </table>
+    <form id="newPetForm">
+      <table>
+        <tr>
+          <td>
+            <label for="ownerDrop">Owner Name</label>
+            <select id="ownerDrop">
+              <option value="" disabled selected>Select an owner</option>
+            </select>
+          </td>
+          <td>
+            <label for="petName">Pet Name</label>
+            <input type="text" name="petName" id="petName">
+            <br>
+            <label for="petColor">Color</label>
+            <input type="text" name="petColor" id="petColor">
+          </td>
+          <td>
+            <label for="petBreed">Breed</label>
+            <input type="text" name="petBreed" id="petBreed">
+            <button id="addPetButton">Add Pet</button>
+          </td>
+        </tr>
+      </table>
+    </form>
 
     <container>
-      <table id="hotelTable">
+      <table>
         <tr>
           <th>Owner</th>
           <th>Pet</th>
@@ -85,7 +87,7 @@
           <th>Delete</th>
           <th>Check In/Out</th>
         </tr>
-        <tbody>
+        <tbody id="hotelData">
           <!-- pet data appears on the DOM here -->
         </tbody>
       </table>
