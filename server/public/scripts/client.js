@@ -18,7 +18,8 @@ console.log('client.js is sourced');
            data: newOwnerObject,
            success: function(response){
              console.log(response);
-             // getPetData();
+             console.log(getPetData());
+             getPetData();
              $('#newOwnerForm > input').val('');
            }
          });// end ajax POST
@@ -85,6 +86,24 @@ console.log('client.js is sourced');
         }
       })
     });
+
+
+    function getOwnerData() {
+         $.ajax({
+           type: 'GET',
+           url: '/pets/newOwners',
+           success: function(response) {
+             console.log('ownerdataresponse', response); // response is an array of owner objects
+             $('#ownerDrop').empty(); // clears the pets in the #ownerDrop
+             for (var i = 0; i < response.length; i++) {
+               var currentOwner = response[i]; // Loops through owners - This is an object
+               var $newOption = $('<option value="' + currentOwner.first_name + ' ' + currentOwner.last_name + '">' + currentOwner.first_name + ' ' + currentOwner.last_name + '</option>'); // Creating a new option for each owner
+               $newOption.data('id', currentOwner.id);
+               $('#ownerDrop').append($newOption);
+             }
+           }
+         });  //closes ajax
+       }; // end getOwnerData
 
 
 

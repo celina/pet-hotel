@@ -74,7 +74,7 @@ router.delete('/delete/:id', function(req, res){
     } else {
       // We connected to the database!!!
       // Now, we're gonna' delete stuff!!!!!
-      client.query('DELETE FROM pets WHERE owner_id=$1;', // This is the SQL query
+      client.query('DELETE FROM pets WHERE id=$1;', // This is the SQL query
       [petId], // This is the array of things that replaces the $1, $2, $3 in the query
       function(errorMakingQuery, result){ // This is the function that runs after the query takes place
         done();
@@ -118,5 +118,26 @@ router.post('/newPets', function(req, res){
 ////////////////
 
 
+
+   router.get('/newOwners', function(req, res){
+     // This will be replaced with a SELECT statement to SQL
+     pool.connect(function(errorConnectingToDatabase, client, done){
+       if(errorConnectingToDatabase) {
+         // There was an error connecting to the database
+         console.log('Error connecting to database: ', errorConnectingToDatabase);
+         res.sendStatus(504);
+       } else {
+         client.query('SELECT * FROM "owners";', function(errorMakingQuery, result){
+           done();
+           if(errorMakingQuery) {
+             console.log('Error making the database query: ', errorMakingQuery);
+             res.sendStatus(500);
+           } else {
+             res.send(result.rows);
+           }
+         });
+       }
+     });
+   });
 
 module.exports = router;
