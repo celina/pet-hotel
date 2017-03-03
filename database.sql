@@ -1,3 +1,4 @@
+NEW
 CREATE TABLE owners (
     id SERIAL PRIMARY KEY,
     first_name character varying(60),
@@ -18,19 +19,58 @@ id SERIAL PRIMARY KEY,
 name varchar(80),
 breed varchar(80),
 color varchar(80),
-owner_id varchar(80));
+owner_id int REFERENCES owners);
+
+INSERT INTO pets(name, breed, color, owner_id)
+VALUES ('brandy', 'lab', 'brown', 1),
+('giggles', 'corgi', 'blue', 2),
+('lucky', 'dalmatian', 'white', 3),
+('spot', 'bulldog', 'gray', 4),
+('fluffy', 'poodle', 'snow white', 5);
 
 
 CREATE TABLE visits (
 id SERIAL PRIMARY KEY,
 name varchar(80),
-check_in varchar(80),
-check_out varchar(80),
-pets_id varchar(80));
+check_in int,
+check_out int,
+pets_id int REFERENCES pets);
 
-INSERT INTO pets(name, breed, color)
-VALUES ('brandy', 'lab', 'brown'),
-('giggles', 'corgi', 'blue'),
-('lucky', 'dalmatian', 'white'),
-('spot', 'bulldog', 'gray'),
-('fluffy', 'poodle', 'snow white');
+
+
+-- CREATE TABLE owners (
+--     id SERIAL PRIMARY KEY,
+--     first_name character varying(60),
+--     last_name character varying(80)
+-- );
+--
+-- INSERT INTO owners(first_name, last_name)
+-- VALUES ('Lisa', 'Bonet'),
+-- ('Charles', 'Darwin'),
+-- ('George', 'Foreman'),
+-- ('Lucy', 'Liu'),
+-- ('Bob', 'Ross'),
+-- ('Johnny', 'Tables');
+--
+--
+-- CREATE TABLE pets (
+-- id SERIAL PRIMARY KEY,
+-- name varchar(80),
+-- breed varchar(80),
+-- color varchar(80),
+-- owner_id int REFERNCES owner);
+--
+-- INSERT INTO pets(name, breed, color)
+-- VALUES ('brandy', 'lab', 'brown'),
+-- ('giggles', 'corgi', 'blue'),
+-- ('lucky', 'dalmatian', 'white'),
+-- ('spot', 'bulldog', 'gray'),
+-- ('fluffy', 'poodle', 'snow white');
+--
+--
+-- CREATE TABLE visits (
+-- id SERIAL PRIMARY KEY,
+-- name varchar(80),
+-- check_in varchar(80),
+-- check_out varchar(80),
+-- pets_id int REFERENCES pets);
