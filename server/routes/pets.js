@@ -60,6 +60,56 @@ router.get('/', function(req, res){
   });
 });
 
+
+
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/newOwners', function(req, res){
   // This will be replaced with a SELECT statement to SQL
   pool.connect(function(errorConnectingToDatabase, client, done){
@@ -80,6 +130,3 @@ router.get('/newOwners', function(req, res){
     }
   });
 });
-
-
-module.exports = router;

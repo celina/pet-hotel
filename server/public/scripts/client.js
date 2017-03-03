@@ -2,27 +2,32 @@ console.log('client.js is sourced');
   $(document).ready(function(){ // start document.ready
 
       getPetData();
+      getOwnerData();
 
       // #registerButton event listener
-      $('#registerButton').on('click', function(event){
+      //$('#registerButton').on('click', function(event){
+      $('#newOwnerForm').on('submit', function(event) {
         console.log('clicking new owner');
+
         event.preventDefault();
         var newOwnerObject = {};
         var formFields = $(this).serializeArray();
         formFields.forEach(function (field) {
           newOwnerObject[field.name] =field.value;
+          console.log(field.name + " : " + field.value);
         });
-          $.ajax({
+        $.ajax({
             type: 'POST',
             url: '/pets/newOwners',
             data: newOwnerObject,
             success: function(response){
               console.log(response);
+              getOwnerData();
               // getPetData();
               $('#newPetForm > input').val('');
             }
-          });// end ajax POST
-          getOwnerData()
+        });// end ajax POST
+
       }); // end #registerButton event listener
 
       // #addPetButton event listener
@@ -115,8 +120,7 @@ console.log('client.js is sourced');
       });  //closes ajax
     }; // end getPetData
 
-    // var newOption = $('<option value="'+val+'">'+val+'</option>');
-     // $('#pages').append(newOption);
+
 
     function getOwnerData() {
       $.ajax({
@@ -133,4 +137,4 @@ console.log('client.js is sourced');
           }
         }
       });  //closes ajax
-    };
+    }; // end getOwnerData
