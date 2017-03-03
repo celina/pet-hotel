@@ -4,7 +4,7 @@ console.log('client.js is sourced');
       getPetData();
       getOwnerData();
 
-      // #registerButton event listener
+      // #newOwnerForm event listener
       $('#newOwnerForm').on('submit', function(event) {
         console.log('clicking new owner');
 
@@ -26,40 +26,7 @@ console.log('client.js is sourced');
               $('#newPetForm > input').val('');
             }
         });// end ajax POST
-
-      }); // end #registerButton event listener
-
-      // #addPetButton event listener
-      $('#addPetButton').on('click', function(event){
-        console.log('clicking new pet');
-        event.preventDefault();
-        var newOwnerObject = {};
-        var formFields = $(this).serializeArray();
-        formFields.forEach(function (field) {
-          newOwnerObject[field.name] =field.value;
-        });
-      }); // end #addPetButton event listener
-
-      //#newOwnerForm event listener
-       $('#newOwnerForm').on('submit', function(event){
-         console.log('clicking new owner');
-         event.preventDefault();
-         var newOwnerObject = {};
-         var formFields = $(this).serializeArray();
-         formFields.forEach(function (field) {
-           newOwnerObject[field.name] = field.value;
-         });
-         $.ajax({
-           type: 'POST',
-           url: '/pets/newOwners',
-           data: newOwnerObject,
-           success: function(response){
-             console.log(response);
-             // getPetData();
-             $('#newOwnerForm > input').val('');
-           }
-         });// end ajax POST
-       });// end #newOwnerForm event listener
+      }); // end newOwnerForm event listener
 
        //#newPetForm event listener
         $('#newPetForm').on('submit', function(event){
@@ -106,8 +73,6 @@ console.log('client.js is sourced');
       });  //closes ajax
     }; // end getPetData
 
-
-
     function getOwnerData() {
       $.ajax({
         type: 'GET',
@@ -123,4 +88,6 @@ console.log('client.js is sourced');
           }
         }
       });  //closes ajax
+
+      
     }; // end getOwnerData
