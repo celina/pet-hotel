@@ -26,21 +26,21 @@ console.log('client.js is sourced');
 
        //#newPetForm event listener
         $('#newPetForm').on('submit', function(event){
-          console.log('clicking new owner');
+          console.log('clicking new pet');
           event.preventDefault();
           var newPetObject = {};
           var formFields = $(this).serializeArray();
           formFields.forEach(function (field) {
-            newOwnerObject[field.name] = field.value;
+            newPetObject[field.name] = field.value;
           });
           $.ajax({
             type: 'POST',
             url: '/pets/newPets',
-            data: newOwnerObject,
+            data: newPetObject,
             success: function(response){
               console.log(response);
-              // getPetData();
               $('#newPetForm > input').val('');
+              getPetData(response);
             }
           });// end ajax POST
         });// end #newPetForm event listener
@@ -54,7 +54,7 @@ console.log('client.js is sourced');
         url: '/pets',
         success: function(response) {
           console.log('response', response); // response is an array of pet objects
-          $('#tbody').empty(); // clears the pets in the #hotelTable
+          $('#hotelData').empty(); // clears the pets in the #hotelData
           for (var i = 0; i < response.length; i++) {
             var currentPet = response[i]; // Loops through pets - This is an object
             var $newPet = $('<tr>'); // Creating a new row for each pet
@@ -65,7 +65,7 @@ console.log('client.js is sourced');
             $newPet.append('<td>' + currentPet.color + '</td>');
             $newPet.append('<td><button class="deleteButton">Delete</button></td>');
             $newPet.append('<td><button class="saveButton">Update Pet</button></td>');
-            $('#hotelTable').append($newPet);
+            $('#hotelData').append($newPet);
           }
         }
       });  //closes ajax
