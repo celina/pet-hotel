@@ -56,6 +56,27 @@ console.log('client.js is sourced');
 
     });// end #newBookForm event listener
 
+    // //#newPetForm event listener
+    // $('#newPetForm').on('submit', function(event){
+    //   console.log('clicking new pet');
+    //   event.preventDefault();
+    //   var newPetObject = {};
+    //   var formFields = $(this).serializeArray();
+    //   formFields.forEach(function (field) {
+    //     newPetObject[field.name] = field.value;
+    //   });
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: '/pets/newPets',
+    //     data: newPetObject,
+    //     success: function(response){
+    //       console.log(response);
+    //       // getPetData();
+    //       $('#newPetForm > input').val('');
+    //     }
+    //   });// end ajax POST
+    // });// end #newPetForm event listener
+
 
 
 
